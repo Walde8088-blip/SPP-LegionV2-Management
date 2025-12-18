@@ -44,7 +44,8 @@ namespace SPP_LegionV2_Management
 				File.Delete(Path.Combine(path, filename));
 			if (File.Exists(Path.Combine(path, file)))
 				File.Delete(Path.Combine(path, file));
-			Directory.Delete($"{path}\\{extractedFolderName}", recursive: true);
+			if (Directory.Exists(Path.Combine(path, extractedFolderName)))
+				Directory.Delete(Path.Combine(path, extractedFolderName), recursive: true);
 
 			GitHubClient client = new GitHubClient(new ProductHeaderValue(repositoryName));
 
