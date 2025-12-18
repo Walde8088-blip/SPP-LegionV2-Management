@@ -9,12 +9,17 @@
 		mc:Ignorable="d" FontSize="14" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterScreen"
 		xmlns:local="clr-namespace:SPP_LegionV2_Management"
 		xmlns:spp_legionv2_management="clr-namespace:SPP_LegionV2_Management"
-		Closing="MetroWindow_Closing"
+				 Closing="MetroWindow_Closing"
 		Title="{Binding AppTitle}"
 		Height="{Binding WindowHeight, Mode=TwoWay}"
 		Width="{Binding WindowWidth, Mode=TwoWay}"
 		Top="{Binding WindowTop, Mode=TwoWay}"
 		Left="{Binding WindowLeft, Mode=TwoWay}">
+
+	<mah:MetroWindow.Resources>
+		<BooleanToVisibilityConverter x:Key="Converter" />
+	</mah:MetroWindow.Resources>
+
 
 	<!-- Set our background image -->
 	<mah:MetroWindow.Background>
@@ -29,8 +34,19 @@
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Margin="4 0 4 0"
-                         VerticalAlignment="Center"
-                         Text="Help / About" />
+							 VerticalAlignment="Center"
+							 Text="Help / About" />
+						</StackPanel>
+					</DataTemplate>
+				</Button.ContentTemplate>
+			</Button>
+			<Button Click="UpdateApp" Content="Update" Visibility="{Binding Path=ShowUpdateButton, Converter={StaticResource Converter}}">
+				<Button.ContentTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Margin="4 0 4 0"
+							 VerticalAlignment="Center"
+							 Text="Update" />
 						</StackPanel>
 					</DataTemplate>
 				</Button.ContentTemplate>
@@ -66,12 +82,6 @@
 					<TextBlock Text="Database Connection:" Margin="5" FontWeight="Bold" />
 					<TextBlock x:Name="SQLConnectionStatus" Margin="0,5,15,5" FontWeight="Bold" />
 				</WrapPanel>
-				<!--<WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Margin="50,0">
-					<Button MaxWidth="850" MaxHeight="60"
-						local:EyeCandyForeGround.Image="/Resources/Background/MdicBangsMoms.png"
-						local:EyeCandyBackGround.ImageBackGround="/Resources/Background/MdicYourMom.png"
-						Style="{DynamicResource DualImageButtonStyle}" Background="Transparent" />
-				</WrapPanel>-->
 
 				<!-- ActiveItem is Caliburn, marks this as the active child form -->
 					<ContentControl x:Name="ActiveItem" Margin="35,30,35,60" />

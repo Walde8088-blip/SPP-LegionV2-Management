@@ -543,13 +543,13 @@ namespace SPP_LegionV2_Management
 			}
 
 			if (WorldCollectionTemplate.Count == 0)
-				Log("WorldCollectionTemplate is empty, error loading file worldserver.conf");
+				Log("WorldCollectionTemplate is empty, error loading default template file worldserver.conf");
 			if (BnetCollectionTemplate.Count == 0)
-				Log("BnetCollectionTemplate is empty, error loading file bnetserver.conf");
+				Log("BnetCollectionTemplate is empty, error loading default template file bnetserver.conf");
 			if (WorldCollection.Count == 0)
-				Log($"WorldConfig is empty, error loading file {WorldConfFile} -- if no configuration has been made, please hit the [Set Defaults] and [Export]");
+				Log($"WorldConfig is empty, error loading file {WorldConfFile} -- Check your Repack folder location in settings");
 			if (BnetCollection.Count == 0)
-				Log($"BnetConfig is empty, error loading file {BnetConfFile} -- if no configuration has been made, please hit the [Set Defaults] and [Export]");
+				Log($"BnetConfig is empty, error loading file {BnetConfFile} -- Check your Repack folder location in settings");
 
 			Thread.Sleep(1);
 			RefreshViews();

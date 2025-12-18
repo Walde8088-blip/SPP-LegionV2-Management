@@ -1,10 +1,8 @@
 ﻿using Caliburn.Micro;
 using MahApps.Metro.Controls.Dialogs;
 using MySql.Data.MySqlClient;
-using Renci.SshNet.Messages;
 using System;
 using System.Security;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace SPP_LegionV2_Management

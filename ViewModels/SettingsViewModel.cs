@@ -2,6 +2,7 @@
 using MahApps.Metro.Controls.Dialogs;
 using Microsoft.Win32;
 using Ookii.Dialogs.Wpf;
+using System.Text.RegularExpressions;
 
 namespace SPP_LegionV2_Management
 {
@@ -26,11 +27,18 @@ namespace SPP_LegionV2_Management
 		{
 			// If it's empty, then it was cancelled and we keep the old setting
 			string tmp = BrowseFolder(true);
-			if (tmp != string.Empty)
+			if (tmp == string.Empty)
+				return;
+
+			// Dump last part of path if someone chose the servers folder
+			if (tmp.EndsWith("\\Servers", System.StringComparison.OrdinalIgnoreCase))
 			{
-				SPPFolderLocation = tmp;
-				GeneralSettingsManager.SaveSettings(GeneralSettingsManager.SettingsPath, GeneralSettingsManager.GeneralSettings);
+				string s = Regex.Replace(tmp, "\\Servers", "", RegexOptions.IgnoreCase);
+				tmp = s;
 			}
+
+			SPPFolderLocation = tmp;
+			GeneralSettingsManager.SaveSettings(GeneralSettingsManager.SettingsPath, GeneralSettingsManager.GeneralSettings);
 		}
 
 		// From hitting the Wow browse button in settings tab
@@ -38,11 +46,11 @@ namespace SPP_LegionV2_Management
 		{
 			// If it's empty, then it was cancelled and we keep the old setting
 			string tmp = BrowseFolder();
-			if (tmp != string.Empty)
-			{
-				WOWConfigLocation = tmp;
-				GeneralSettingsManager.SaveSettings(GeneralSettingsManager.SettingsPath, GeneralSettingsManager.GeneralSettings);
-			}
+			if (tmp == string.Empty)
+				return;
+			
+			WOWConfigLocation = tmp;
+			GeneralSettingsManager.SaveSettings(GeneralSettingsManager.SettingsPath, GeneralSettingsManager.GeneralSettings);
 		}
 
 		// Method to browse to a folder
